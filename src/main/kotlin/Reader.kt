@@ -9,7 +9,11 @@ class Reader {
             }
     }
 
-    fun readStandardInputToArray (filePath: String): List<String> {
+    fun readStandardInputToArray(filePath: String): List<String> {
         return File(filePath).readLines()
+    }
+
+    fun readString(filePath: String): String {
+        return File(filePath).readText()
     }
 }
