@@ -8,4 +8,8 @@ class Reader {
                     .mapNotNull { it.trim().toIntOrNull() }
             }
     }
+
+    fun readStandardInputToArray (filePath: String): List<String> {
+        return File(filePath).readLines()
+    }
 }

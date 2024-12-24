@@ -7,7 +7,7 @@ fun main() {
 }
 // Part01
 
-fun part01(){
+private fun part01(){
     val dict = parser("day07input.txt")
 
     var result = 0L
