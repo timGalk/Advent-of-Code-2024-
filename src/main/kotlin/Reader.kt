@@ -16,4 +16,7 @@ class Reader {
     fun readString(filePath: String): String {
         return File(filePath).readText()
     }
+    fun readStringAsIntArr(filePath: String): List<Int> {
+        return File(filePath).readText().split(" ").map { it.toInt() }
+    }
 }
