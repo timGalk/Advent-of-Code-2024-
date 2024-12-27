@@ -26,4 +26,12 @@ class Reader {
                     .mapNotNull { it.trim().first() }
             }
     }
+
+    fun gridCreator(filePath: String): List<List<Char>> {
+        return File(filePath).readLines().map { it.toList() }
+    }
+
+    fun gridIntCreator(filePath: String): List<List<Int>> {
+        return gridCreator(filePath).map { it.map { it.toString().toInt() } }
+    }
 }
