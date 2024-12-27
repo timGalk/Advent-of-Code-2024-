@@ -11,7 +11,7 @@ fun main() {
     val reader = Reader()
 
     // Read the file and convert it to a nested array
-    val array = reader.readFileToNestedArray(file)
+    val array = reader.readFileToNestedIntArray(file)
 
     // Initialize empty arrays for 'left' and 'right'
     var left = arrayOf<Int>()

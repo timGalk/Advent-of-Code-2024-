@@ -1,7 +1,7 @@
 fun main(){
     val file = "src/main/resources/input.txt"
     val reader = Reader()
-    val array = reader.readFileToNestedArray(file)
+    val array = reader.readFileToNestedIntArray(file)
     var left = arrayOf<Int>()
     var right = arrayOf<Int>()
 

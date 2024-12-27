@@ -62,6 +62,9 @@ fun rules(stones: List<Long>): List<Long> {
 
 
 fun part02() {
+    /**
+     * Contains optimizeed algorithm to reduce the number of iterations
+     */
     var stoneStorage = listToMap(stones)
 
     repeat(75) {
@@ -110,5 +113,6 @@ fun listToMap(stones: List<Long>): MutableMap<Long, Long> {
 
 
 fun main() {
+    part01()
     part02()
 }
