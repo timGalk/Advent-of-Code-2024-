@@ -27,11 +27,14 @@ class Reader {
             }
     }
 
-    fun gridCreator(filePath: String): List<List<Char>> {
-        return File(filePath).readLines().map { it.toList() }
+    fun parseInput(path: String): List<List<Int>> {
+        return File(path).readLines().map { line ->
+            line.trim().map { it.digitToInt() }
+        }
     }
 
-    fun gridIntCreator(filePath: String): List<List<Int>> {
-        return gridCreator(filePath).map { it.map { it.toString().toInt() } }
+    fun gridCreator(path: String): List<List<Char>> {
+        return File(path).readText().split("\n").map { it.toList() }
     }
+
 }
