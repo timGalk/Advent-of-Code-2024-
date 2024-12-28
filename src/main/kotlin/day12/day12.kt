@@ -14,8 +14,16 @@ val cols = grid[0].size
 
 fun main (){
     part01()
+    part02()
 }
 fun part01() {
+    val regions = regions()
+
+
+    val result = regions.sumOf { it.size * perimeter(it) }
+    println(result)
+}
+fun regions(): List<Set<Position>> {
     val regions = mutableListOf<Set<Position>>()
     val seen = mutableSetOf<Position>()
     for (x in 0 until rows) {
@@ -45,8 +53,7 @@ fun part01() {
         }
     }
 
-    val result = regions.sumOf { it.size * perimeter(it) }
-    println(result)
+    return regions
 }
 
 fun perimeter(region: Set<Position>): Int {
@@ -65,6 +72,49 @@ fun perimeter(region: Set<Position>): Int {
 }
 
 fun part02(){
+    val regions = regions()
+
+    val result = regions.sumOf { it.size * sides(it) }
+    println(result)
 
 }
+
+fun sides(region: Set<Position>): Int {
+    val cornerCandidates = mutableSetOf<Pair<Double, Double>>()
+
+    // Step 1: Generate corner candidates
+    for (pos in region) {
+        val (r, c) = pos
+        listOf(
+            Pair(r - 0.5, c - 0.5),
+            Pair(r + 0.5, c - 0.5),
+            Pair(r + 0.5, c + 0.5),
+            Pair(r - 0.5, c + 0.5)
+        ).forEach { cornerCandidates.add(it) }
+    }
+
+    var corners = 0
+
+    // Step 2: Analyze each corner candidate
+    for ((cr, cc) in cornerCandidates) {
+        val config = listOf(
+            region.contains(Position((cr - 0.5).toInt(), (cc - 0.5).toInt())),
+            region.contains(Position((cr + 0.5).toInt(), (cc - 0.5).toInt())),
+            region.contains(Position((cr + 0.5).toInt(), (cc + 0.5).toInt())),
+            region.contains(Position((cr - 0.5).toInt(), (cc + 0.5).toInt()))
+        )
+        val number = config.count { it }
+
+        // Step 3: Calculate corners based on configurations
+        corners += when (number) {
+            1 -> 1
+            2 -> if (config == listOf(true, false, true, false) || config == listOf(false, true, false, true)) 2 else 0
+            3 -> 1
+            else -> 0
+        }
+    }
+
+    return corners
+}
+
 
